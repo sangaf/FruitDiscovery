@@ -1,0 +1,36 @@
+
+
+group 'sainsbury'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "com.fruitdiscovery.FruitDiscoveryApplication"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile 'org.jsoup:jsoup:1.8.3'
+    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testCompile 'org.mortbay.jetty:jetty:6.1.26'
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.12'
+}
+
+run {
+    if ( project.hasProperty("url") ) {
+        args = [url]
+    }
+}
